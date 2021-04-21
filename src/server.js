@@ -11,13 +11,13 @@ export function makeServer() {
             this.post('/add/book', (schema, request) => {
                 const book = JSON.parse(request.requestBody)
                 books.push(book)
-                return "Added"
+                return books
             })
             this.delete("/delete/book/:id", (scheme, request) => {
                 const id = request.params.id
                 const index = books.findIndex(i => i.id === id)
                 books.splice(index, 1)
-                return "deleted"
+                return books
             })
         }
     })

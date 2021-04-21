@@ -1,4 +1,3 @@
-import { useState } from "react";
 import AddBook from "./components/AddBook";
 import Books from "./components/Books";
 
@@ -16,19 +15,6 @@ function App() {
     height: "100%",
     backgroundColor: "rgba(0, 0, 0, 0.7)"
   }
-  const [add, setAdd] = useState("")
-  const [del, setDel] = useState("")
-
-  const bookAdded = (data) => {
-    setAdd(data)
-  }
-  const clear = () => {
-    setAdd("")
-    setDel("")
-  }
-  const bookDeleted = (data) => {
-    setDel(data)
-  }
 
   return (
 
@@ -41,16 +27,10 @@ function App() {
             </div>
           </div>
           <div className="col-12 col-md-4">
-            <AddBook
-              bookAdded={bookAdded}
-            />
+            <AddBook />
           </div>
           <div className="col-12 col-md-8">
-            <Books
-              add={add}
-              clear={clear}
-              deleted={bookDeleted}
-            />
+            <Books />
           </div>
         </div>
       </div>

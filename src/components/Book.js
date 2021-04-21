@@ -1,16 +1,11 @@
 import React from 'react'
-import axios from "axios"
-const Book = ({ id, book, author, genre, deleted }) => {
+import { useDispatch } from 'react-redux'
+import { removingBook } from "../store/books"
+
+const Book = ({ id, book, author, genre }) => {
+    const dispatch = useDispatch()
     const handleOnClick = async () => {
-        try {
-            await axios.delete(`/api/delete/book/${id}`)
-                .then(res => {
-                    deleted(res.data)
-                })
-                .catch(err => console.log(err))
-        } catch (error) {
-            console.log(error)
-        }
+        dispatch(removingBook(id))
     }
     return (
         <div className="card">

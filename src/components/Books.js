@@ -1,26 +1,32 @@
-import React, { useEffect, useState } from 'react'
-import axios from "axios"
+import React, { useEffect } from 'react'
 import Book from './Book'
+import { useDispatch, useSelector } from "react-redux"
+import { gettingBooks, resetBooks } from "../store/books"
 
-const Books = ({ add, clear, deleted }) => {
-    const [books, setBooks] = useState([])
+const Books = ({ deleted }) => {
+    const dispatch = useDispatch()
+    const { list, success, gBLoading } = useSelector(state => state.books)
+
     useEffect(() => {
-        const fetchData = async () => {
-            const { data } = await axios.get("/api/books")
-            setBooks(data)
-            clear()
+        dispatch(gettingBooks())
+
+        //eslint-disable-next-line
+    }, [])
+
+    useEffect(() => {
+        if (success) {
+            dispatch(resetBooks())
         }
-        fetchData()
-        // eslint-disable-next-line
-    }, [add, deleted])
+
+    }, [success, dispatch])
 
 
-    if (!books.length) return <p>Loading.....</p>
+    if (!list.length || gBLoading) return <p>Loading.....</p>
 
     return (
         <div className="container my-5">
             <div className="card-columns">
-                {books.map(book => (
+                {list.map(book => (
                     <Book
                         key={book.id}
                         id={book.id}

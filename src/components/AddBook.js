@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import axios from "axios"
+import { useDispatch } from "react-redux"
+import { addingBook } from "../store/books"
 const AddBook = ({ bookAdded }) => {
-
+    const dispatch = useDispatch()
     const [book, setBook] = useState("")
     const [author, setAuthor] = useState("")
     const [genre, setGenre] = useState("")
@@ -11,24 +12,17 @@ const AddBook = ({ bookAdded }) => {
             alert("Fill All The Fields")
             return
         }
-        try {
-            await axios.post("/api/add/book", JSON.stringify({
-                id: Math.random() * 12345678,
-                book,
-                author,
-                genre
-            }))
-                .then(res => {
-                    bookAdded(res.data)
-                    // console.log(res.data)
-                })
-                .catch(err => console.log(err))
-        } catch (error) {
-            console.log(error)
-        }
-        setBook("")
-        setAuthor("")
-        setGenre("")
+        const data = JSON.stringify({
+            id: Math.random() * 12345678,
+            book,
+            author,
+            genre
+        })
+
+        dispatch(addingBook(data))
+        // setBook("")
+        // setAuthor("")
+        // setGenre("")
     }
     return (
         <div className="container my-3">
