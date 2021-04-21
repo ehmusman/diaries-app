@@ -20,9 +20,9 @@ const AddBook = ({ bookAdded }) => {
         })
 
         dispatch(addingBook(data))
-        // setBook("")
-        // setAuthor("")
-        // setGenre("")
+        setBook("")
+        setAuthor("")
+        setGenre("")
     }
     return (
         <div className="container my-3">
