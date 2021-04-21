@@ -1,0 +1,6 @@
+[
+    {"id": "1","name":"usman","email": "usman@gmail.com", "password": "asdfghjkl"},
+    {"id": "2","name":"ehsan","email": "ehsan@gamil.com", "password": "asdfghjkl"},
+    {"id": "3","name":"umer","email": "umer@gamil.com", "password": "asdfghjkl"},
+    {"id": "4","name":"farooq","email": "farooq@gamil.com", "password": "asdfghjkl"}
+]

@@ -17,7 +17,6 @@ const books = ({ dispatch, getState }) => next => async action => {
             method,
             data: data
         })
-        console.log("gt", response)
         dispatch(apiCallSuccess(response.data))
         if (onSuccess) dispatch({ type: onSuccess, payload: response.data })
     } catch (error) {

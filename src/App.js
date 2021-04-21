@@ -1,5 +1,9 @@
 import AddBook from "./components/AddBook";
+import Login from "./components/auth/Login";
 import Books from "./components/Books";
+import { useSelector } from "react-redux"
+import { useState } from "react";
+import Signup from "./components/auth/Signup";
 
 function App() {
   const bg = {
@@ -15,9 +19,12 @@ function App() {
     height: "100%",
     backgroundColor: "rgba(0, 0, 0, 0.7)"
   }
-
+  const { user } = useSelector(state => state.auth)
+  const [toggle, setToggle] = useState(false)
+  const handleToggle = () => {
+    setToggle(!toggle)
+  }
   return (
-
     <div style={bg}>
       <div style={fg}>
         <div className="row">
@@ -25,13 +32,18 @@ function App() {
             <div className="h1 mt-2 text-light text-center">
               Diaries App
             </div>
+            {!user ? !toggle ? <Login handle={handleToggle} /> : <Signup handle={handleToggle} /> : null}
           </div>
-          <div className="col-12 col-md-4">
-            <AddBook />
-          </div>
-          <div className="col-12 col-md-8">
-            <Books />
-          </div>
+          {user &&
+            <>
+              <div className="col-12 col-md-4">
+                <AddBook />
+              </div>
+              <div className="col-12 col-md-8">
+                <Books />
+              </div>
+            </>
+          }
         </div>
       </div>
     </div>
